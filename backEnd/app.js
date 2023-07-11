@@ -1,9 +1,11 @@
 import express from "express"
 import { MongoClient, ServerApiVersion } from "mongodb"
-import config from "./config/config"
 
 // Controllers
-import * as financeCtrl from "./controllers/finance.controller"
+import { listRecord, addRecord, viewRecord, deleteRecord } from "./controllers/finance.controller"
+
+const uri = "mongodb+srv://sharceus14:JQ1Esr1DwH8In67M@datacluster.63gytmz.mongodb.net/?retryWrites=true&w=majority"
+const port = 80
 
 const app = express()
 
@@ -11,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Connect to MongoDB
-MongoClient.connect(config.uri, { useUnifiedTopology: true })
+MongoClient.connect(uri, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to MongoDB')
     // Add further code for interacting with the database
@@ -20,12 +22,24 @@ MongoClient.connect(config.uri, { useUnifiedTopology: true })
     console.error('Error connecting to MongoDB', error)
   })
 
-app.use("/list-data").get(financeCtrl.listRecord)
-
+app.use("/list-record").get(listRecord)
+// app.use("/view-record").get(viewRecord)
+// app.use("/add-record").post(addRecord)
+// app.use("/delete-record").post(deleteRecord)
   
 app.listen(port, () => {
-    console.log(`Server running on port ${config.port}`)
+    console.log(`Server running on port ${port}`)
 })
+
+
+
+
+
+
+
+
+
+
 
 
 
