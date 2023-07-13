@@ -1,6 +1,3 @@
-import mongoose from "mongoose"
-import Finance from "../models/Finance"
-
 
 export const listRecord = (req, res) => {
     try {
@@ -10,7 +7,6 @@ export const listRecord = (req, res) => {
     } catch (err) {
         return res.status(400).json({ message: "Something went wrong: " + err.message })
     }
-
 }
 
 export const addRecord = (req, res) => {
@@ -21,7 +17,6 @@ export const addRecord = (req, res) => {
     } catch (err) {
         return res.status(400).json({ message: "Something went wrong: " + err.message })
     }
-
 }
 
 export const viewRecord = (req, res) => {
@@ -32,7 +27,6 @@ export const viewRecord = (req, res) => {
     } catch (err) {
         return res.status(400).json({ message: "Something went wrong: " + err.message })
     }
-
 }
 
 export const deleteRecord = (req, res) => {
@@ -43,5 +37,4 @@ export const deleteRecord = (req, res) => {
     } catch (err) {
         return res.status(400).json({ message: "Something went wrong: " + err.message })
     }
-
 }

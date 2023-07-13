@@ -2,7 +2,7 @@ import express from "express"
 import { MongoClient, ServerApiVersion } from "mongodb"
 
 // Controllers
-import { listRecord, addRecord, viewRecord, deleteRecord } from "./controllers/finance.controller"
+import { listRecord } from "./controllers/finance.controller.js"
 
 const uri = "mongodb+srv://sharceus14:JQ1Esr1DwH8In67M@datacluster.63gytmz.mongodb.net/?retryWrites=true&w=majority"
 const port = 80
@@ -22,9 +22,10 @@ MongoClient.connect(uri, { useUnifiedTopology: true })
     console.error('Error connecting to MongoDB', error)
   })
 
-app.use("/list-record").get(listRecord)
+app.get("/list-record", () => {listRecord})
 // app.use("/view-record").get(viewRecord)
 // app.use("/add-record").post(addRecord)
+
 // app.use("/delete-record").post(deleteRecord)
   
 app.listen(port, () => {
